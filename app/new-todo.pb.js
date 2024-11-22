@@ -1,17 +1,14 @@
 routerAdd("POST", "/newtodo", (c) => {
-    console.log("hey buddy");
     const data = $apis.requestInfo(c).data
-    console.log(JSON.stringify(data));
-    /*
-      const name = c.pathParam("name")
+    const collection = $app.dao().findCollectionByNameOrId("todos")
+    const record = new Record(collection)
+    const form = new RecordUpsertForm($app, record)
 
-      const html = $template.loadFiles(
-      `${__hooks}/views/layout.html`,
-      `${__hooks}/views/hello.html`,
-      ).render({
-      "name": name,
-      })
+    form.loadData({
+	"field":       data.todo,
+	"done":         false,
 
-      return c.html(200, html)
-    */
+    });
+    form.submit();
 })
+
