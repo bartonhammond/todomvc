@@ -1,5 +1,4 @@
 module.exports = () => {
-
 	const result = arrayOf(new DynamicModel({
         // describe the shape of the data (used also as initial values)
         "id":     "",

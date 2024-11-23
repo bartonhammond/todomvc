@@ -1,11 +1,11 @@
 {
   "private": true,
   "scripts": {
-      "serve": "./pocketbase serve --hooksDir=app ",
-      "dev": "./pocketbase serve --hooksDir=app --dev "
+    "serve": "./pocketbase serve --hooksDir=app ",
+    "dev": "./pocketbase serve --hooksDir=app --dev "
   },
   "dependencies": {
-    "pocketpages": "^0.10.0-next.5",
+    "pocketpages": "0.9.4",
     "todomvc-app-css": "^2.0.0",
     "todomvc-common": "^1.0.0"
   }

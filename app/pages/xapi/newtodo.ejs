@@ -1,0 +1,35 @@
+<%
+let formData = $apis.requestInfo(ctx).data;
+
+let collection = $app.dao().findCollectionByNameOrId("todos");
+let record = new Record(collection);
+let form = new RecordUpsertForm($app, record);
+
+form.loadData({
+    field: formData.todo,
+    done: false,
+});
+
+form.submit();
+
+const result = arrayOf(
+		new DynamicModel({
+			// describe the shape of the data (used also as initial values)
+			id: "",
+			field: "",
+			done: false,
+		})
+	);
+
+	$app
+		.dao()
+		.db()
+		.newQuery("SELECT id, field, done FROM todos LIMIT 100")
+		.all(result); // throw an error on db failure
+
+    let data = {
+        todos: result
+    }
+
+%>
+<%- include('/_private/todolist.ejs', {data}) %>
