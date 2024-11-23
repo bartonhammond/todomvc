@@ -1,9 +1,15 @@
 <%
-let formData = $apis.requestInfo(ctx).data;
+let formData = $apis.requestInfo(ctx).data
 
-const todo = $app.dao().findRecordById("todos", formData.id)
-todo.set("done", !todo.done)
-$app.dao().saveRecord(todo)
+const record = $app.dao().findRecordById("todos", formData.id)
+record.set("done", !record.getBool("done"))
+$app.dao().saveRecord(record)
+
+let todo = {
+	id: record.getId(),
+	done: record.getBool("done"),
+	field: record.getString("field")
+}
 
 %>
-<%- include('/_private/todo-item.ejs', {todo:todo}) %>
+<%- include('/_private/todo-item.ejs', {todo}) %>

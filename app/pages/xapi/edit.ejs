@@ -1,0 +1,14 @@
+<%
+let formData = $apis.requestInfo(ctx).query;
+log.info(formData)
+
+const record = $app.dao().findRecordById("todos", formData.id)
+log.info(record)
+const todo = {
+    id: record.getId(),
+    field: record.getString("field"),
+    done: record.getBool("done")
+}
+
+%>
+<%- include('/_private/todo-edit.ejs', {todo}) %>

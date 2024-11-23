@@ -5,12 +5,21 @@
         hx-target="<%= `#todo-${todo.id}` %>" 
         hx-swap="outerHTML" 
         hx-vals="<%= `{"id": "${todo.id}"}`%>"
-        
         <%= todo.done  ? 'checked' : '' %>>
-    <label>
-      <%= todo.field %>
+    <label
+        hx-get="/xapi/edit"
+        hx-vals="<%= `{"id": "${todo.id}"}`%>"
+        hx-target="<%= `#todo-${todo.id}` %>" 
+        hx-swap="outerHTML"
+        >
+        <%= `${todo.field}` %>
     </label>
-    <button class="destroy"></button>
+    <button  
+        hx-delete="<%= `/xapi/delete` %>" 
+        hx-vals="<%= `{"id": "${todo.id}"}`%>"
+        _="on htmx:afterOnLoad <%= `remove #todo-${todo.id}` %>" 
+        class="destroy">
+    </button>
   </div>
   <input class="edit" value="Create a TodoMVC template">
 </li>

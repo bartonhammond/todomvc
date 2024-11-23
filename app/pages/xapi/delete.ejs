@@ -1,0 +1,5 @@
+<%
+let formData = $apis.requestInfo(ctx).query;
+const record = $app.dao().findRecordById("todos", formData.id)
+$app.dao().deleteRecord(record)
+%>

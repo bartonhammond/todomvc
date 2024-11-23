@@ -1,0 +1,10 @@
+<form 
+    hx-post="/xapi/update" 
+    hx-vals="<%= `{"id": "${todo.id}"}`%>"
+    hx-trigger="submit" >
+    <input name="todo" 
+        class="new-todo" 
+        autofocus
+        value="<%= `${todo.field}` %>">
+    
+</form>  
