@@ -1,0 +1,16 @@
+<li id="<%= `todo-${todo.id}` %>" class="<%= todo.done  ? 'completed' : '' %>">
+  <div class="view">
+    <input class="toggle" type="checkbox" 
+        hx-patch="<%= `/xapi/toggle` %>" 
+        hx-target="<%= `#todo-${todo.id}` %>" 
+        hx-swap="outerHTML" 
+        hx-vals="<%= `{"id": "${todo.id}"}`%>"
+        
+        <%= todo.done  ? 'checked' : '' %>>
+    <label>
+      <%= todo.field %>
+    </label>
+    <button class="destroy"></button>
+  </div>
+  <input class="edit" value="Create a TodoMVC template">
+</li>

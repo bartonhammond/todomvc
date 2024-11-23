@@ -1,0 +1,9 @@
+<%
+let formData = $apis.requestInfo(ctx).data;
+
+const todo = $app.dao().findRecordById("todos", formData.id)
+todo.set("done", !todo.done)
+$app.dao().saveRecord(todo)
+
+%>
+<%- include('/_private/todo-item.ejs', {todo:todo}) %>
