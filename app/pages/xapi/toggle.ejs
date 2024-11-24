@@ -1,4 +1,6 @@
 <%
+include('/_private/utils.ejs')
+
 let formData = $apis.requestInfo(ctx).data
 
 const record = $app.dao().findRecordById("todos", formData.id)
@@ -11,5 +13,9 @@ let todo = {
 	field: record.getString("field")
 }
 
+let itemsLeft = getItemsLeft()
+
+log.info('itemsLeft', itemsLeft)
 %>
+<%- include('/_private/items-left.ejs', {itemsLeft}) %>
 <%- include('/_private/todo-item.ejs', {todo}) %>

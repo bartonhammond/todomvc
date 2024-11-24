@@ -1,0 +1,8 @@
+<% function getItemsLeft() { %>
+    const records = $app.dao().findRecordsByExpr("todos",
+        $dbx.hashExp({ done: false })
+    )   
+    log.info('records', records)
+    log.info('records.length', records.length)
+    <%= records.length %>
+<% } %>
